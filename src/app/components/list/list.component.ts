@@ -26,10 +26,8 @@ export class ListComponent {
     this.shoppingListService.getSheetData().subscribe(items => {
       this.items = items;
       this.items.sort((item: { name: string; }, b: { name: any; }) => item.name.localeCompare(b.name));
-      console.log(items);
       this.sumItemsCost();
       this.itemsLength = this.items.length;
-      console.log(this.total);
     });
   }
 

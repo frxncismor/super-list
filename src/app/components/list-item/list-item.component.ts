@@ -30,7 +30,6 @@ export class ListItemComponent implements OnInit{
   updateCost(event: any) {
     let value = event.target.value;
     this.shoppingListService.updateCost(value, this.item.cost_cell, this.item.sheet_name).subscribe(res => {
-      console.log(res);
       this.isEditting = false;
       this.refresh.emit();
     });
@@ -46,7 +45,6 @@ export class ListItemComponent implements OnInit{
     let id = e.target.id;
     this.checked = isChecked;
     sessionStorage.setItem(id, isChecked);
-    console.log(this.checked, id);
   }
 
 }

@@ -20,6 +20,7 @@ export class ListItemComponent implements OnInit{
     measure: "",
     name: "",
     need_to_buy: "",
+    sheet_name: ""
   };
 
   ngOnInit(): void {
@@ -28,7 +29,7 @@ export class ListItemComponent implements OnInit{
 
   updateCost(event: any) {
     let value = event.target.value;
-    this.shoppingListService.updateCost(value, this.item.cost_cell).subscribe(res => {
+    this.shoppingListService.updateCost(value, this.item.cost_cell, this.item.sheet_name).subscribe(res => {
       console.log(res);
       this.isEditting = false;
       this.refresh.emit();

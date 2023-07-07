@@ -11,6 +11,7 @@ import { ShoppingListService } from 'src/app/services/shopping-list.service';
 export class ListComponent {
   public total = 0;
   public items: any;
+  public itemsLength: number = 0;
 
   constructor(private shoppingListService: ShoppingListService) {}
   ngOnInit(): void {
@@ -24,8 +25,10 @@ export class ListComponent {
   getItems() {
     this.shoppingListService.getSheetData().subscribe(items => {
       this.items = items;
+      this.items.sort((item: { name: string; }, b: { name: any; }) => item.name.localeCompare(b.name));
       console.log(items);
       this.sumItemsCost();
+      this.itemsLength = this.items.length;
       console.log(this.total);
     });
   }
@@ -34,7 +37,7 @@ export class ListComponent {
     this.total = 0;
     this.items.forEach((item: Ingrediente) => {
       if (item.cost) {
-        let cost = parseInt(item.cost);
+        let cost = parseFloat(item.cost);
         this.total = this.total + cost;
       }
     });

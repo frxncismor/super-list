@@ -4,4 +4,5 @@ export interface Ingrediente {
   measure: string;
   cost: string;
   cost_cell: string;
+  sheet_name: string;
 }

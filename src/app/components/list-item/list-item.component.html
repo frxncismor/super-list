@@ -9,7 +9,7 @@
         <div class="need_to_buy">{{item.need_to_buy}}</div>
         <div class="measure">{{item.measure}}</div>
       </div>
-      <div class="item-label__cost" *ngIf="!this.isEditting && item.cost">${{item.cost}} mxn</div>
+      <div class="item-label__cost" *ngIf="!this.isEditting && item.cost">{{item.cost| currency}} mxn</div>
     </div>
   </label>
   <button class="item-edit" *ngIf="!this.isEditting" (click)="editCost()">

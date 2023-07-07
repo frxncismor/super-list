@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Ingrediente } from 'src/app/interfaces/ingrediente.interface';
 import { ShoppingListService } from 'src/app/services/shopping-list.service';
 
@@ -7,11 +7,11 @@ import { ShoppingListService } from 'src/app/services/shopping-list.service';
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss']
 })
-export class ListItemComponent {
+export class ListItemComponent implements OnInit{
   public isEditting = false;
+  public checked = false;
   @Output('refresh') public refresh: EventEmitter<void> = new EventEmitter();
   constructor(private shoppingListService: ShoppingListService) {
-
   }
 
   @Input('item') public item: Ingrediente = {
@@ -19,8 +19,12 @@ export class ListItemComponent {
     cost_cell: "",
     measure: "",
     name: "",
-    need_to_buy: ""
+    need_to_buy: "",
   };
+
+  ngOnInit(): void {
+    this.checked = sessionStorage.getItem(this.item.name) === "true" ? true : false;
+  }
 
   updateCost(event: any) {
     let value = event.target.value;
@@ -33,6 +37,15 @@ export class ListItemComponent {
 
   editCost() {
     this.isEditting = true;
+    this.checked = this.checked === true ? true : false;
+  }
+
+  check(e: any) {
+    let isChecked = e.target.checked;
+    let id = e.target.id;
+    this.checked = isChecked;
+    sessionStorage.setItem(id, isChecked);
+    console.log(this.checked, id);
   }
 
 }

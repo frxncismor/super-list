@@ -1,6 +1,7 @@
-<div class="item">
+<div class="item" *ngIf="item.need_to_buy !== '0'">
+ <div class="item-wrapper">
   <label class="item-label">
-    <input class="item-label__checkbox" type="checkbox" [id]="item.name" value="checked">
+    <input class="item-label__checkbox" type="checkbox" [id]="item.name" [checked]="checked" (change)="check($event)">
     <div class="item-label__info">
       <div class="info-top">
         <div class="name">{{item.name}}</div>
@@ -8,15 +9,16 @@
         <div class="need_to_buy">{{item.need_to_buy}}</div>
         <div class="measure">{{item.measure}}</div>
       </div>
-      <div class="item-label__cost" *ngIf="!this.isEditting">{{item.cost}} mxn</div>
+      <div class="item-label__cost" *ngIf="!this.isEditting && item.cost">${{item.cost}} mxn</div>
     </div>
-    <button class="item-label__edit" *ngIf="!this.isEditting" (click)="editCost()">
-      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0,0,256,256"
-      style="fill:#000000;">
-      <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(16,16)"><path d="M12.527,7.473l-4,-4l-7.527,7.527v4h4z"></path><path d="M11.172,0.828l-1.065,1.065l4,4l1.065,-1.065c1.105,-1.105 1.105,-2.895 0,-4v0c-1.105,-1.104 -2.896,-1.104 -4,0z"></path></g></g>
-      </svg>
-    </button>
-    <input class="item-label__input" [value]="item.cost" *ngIf="this.isEditting" (keydown.enter)="updateCost($event)">
   </label>
+  <button class="item-edit" *ngIf="!this.isEditting" (click)="editCost()">
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0,0,256,256"
+    style="fill:#000000;">
+    <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(16,16)"><path d="M12.527,7.473l-4,-4l-7.527,7.527v4h4z"></path><path d="M11.172,0.828l-1.065,1.065l4,4l1.065,-1.065c1.105,-1.105 1.105,-2.895 0,-4v0c-1.105,-1.104 -2.896,-1.104 -4,0z"></path></g></g>
+    </svg>
+  </button>
+  <input class="item-input" [value]="item.cost" *ngIf="this.isEditting" (keydown.enter)="updateCost($event)">
+ </div>
 </div>
 

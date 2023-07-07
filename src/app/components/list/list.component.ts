@@ -26,14 +26,16 @@ export class ListComponent {
       this.items = items;
       console.log(items);
       this.sumItemsCost();
+      console.log(this.total);
     });
   }
 
   sumItemsCost() {
+    this.total = 0;
     this.items.forEach((item: Ingrediente) => {
       if (item.cost) {
         let cost = parseInt(item.cost);
-        this.total += cost;
+        this.total = this.total + cost;
       }
     });
   }

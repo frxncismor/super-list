@@ -8,13 +8,15 @@ import { ShoppingListService } from './services/shopping-list.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { ListComponent } from './components/list/list.component';
+import { LegalComponent } from './pages/legal/legal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListItemComponent,
-    ListComponent
+    ListComponent,
+    LegalComponent
   ],
   imports: [
     BrowserModule,

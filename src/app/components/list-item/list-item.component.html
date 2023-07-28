@@ -1,4 +1,4 @@
-<div class="item" *ngIf="item.Necesitamos !== ''">
+<div class="item" *ngIf="item.Falta !== '0'">
  <div class="item-wrapper">
   <label class="item-label">
     <input class="item-label__checkbox" type="checkbox" [id]="item.Nombre" [checked]="checked" (change)="check($event)">
@@ -6,7 +6,7 @@
       <div class="info-top">
         <div class="name">{{item.Nombre}}</div>
         <div class="bar"></div>
-        <div class="need_to_buy">{{item.Necesitamos}}</div>
+        <div class="need_to_buy">{{item.Falta}}</div>
         <div class="measure">{{item.Medida}}</div>
       </div>
       <div class="item-label__cost" *ngIf="!this.isEditting && item.Costo">{{item.Costo| currency}} mxn</div>

@@ -1,8 +1,10 @@
 export interface Ingrediente {
-  name: string;
-  need_to_buy: string;
-  measure: string;
-  cost: string;
-  cost_cell: string;
-  sheet_name: string;
+  Total?: string;
+  Costo: string;
+  Falta: string;
+  Nombre: string;
+  Medida: string;
+  Necesitamos: string;
+  Index: string;
+  Hoja: string;
 }

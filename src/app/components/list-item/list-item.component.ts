@@ -15,21 +15,24 @@ export class ListItemComponent implements OnInit{
   }
 
   @Input('item') public item: Ingrediente = {
-    cost: "",
-    cost_cell: "",
-    measure: "",
-    name: "",
-    need_to_buy: "",
-    sheet_name: ""
+    Total: "",
+    Costo: "",
+    Falta: "",
+    Nombre: "",
+    Medida: "",
+    Necesitamos: "",
+    Index: "",
+    Hoja: ""
   };
 
   ngOnInit(): void {
-    this.checked = sessionStorage.getItem(this.item.name) === "true" ? true : false;
+    this.checked = sessionStorage.getItem(this.item.Nombre) === "true" ? true : false;
   }
 
   updateCost(event: any) {
     let value = event.target.value;
-    this.shoppingListService.updateCost(value, this.item.cost_cell, this.item.sheet_name).subscribe(res => {
+    this.shoppingListService.updateCost(value, this.item.Index, this.item.Hoja).subscribe(res => {
+      console.log(res);
       this.isEditting = false;
       this.refresh.emit();
     });

@@ -10,7 +10,7 @@ import { ShoppingListService } from 'src/app/services/shopping-list.service';
 })
 export class ListComponent {
   public total = 0;
-  public items: any;
+  public items: Ingrediente[] = [];
   public itemsLength: number = 0;
 
   constructor(private shoppingListService: ShoppingListService) {}
@@ -23,9 +23,8 @@ export class ListComponent {
   }
 
   getItems() {
-    this.shoppingListService.getSheetData().subscribe(items => {
-      this.items = items;
-      this.items.sort((item: { name: string; }, b: { name: any; }) => item.name.localeCompare(b.name));
+    this.shoppingListService.getSheetData().subscribe((ingredientes: any) => {
+      this.items = ingredientes;
       this.sumItemsCost();
       this.itemsLength = this.items.length;
     });
@@ -34,8 +33,8 @@ export class ListComponent {
   sumItemsCost() {
     this.total = 0;
     this.items.forEach((item: Ingrediente) => {
-      if (item.cost) {
-        let cost = parseFloat(item.cost);
+      if (item.Costo) {
+        let cost = parseFloat(item.Costo);
         this.total = this.total + cost;
       }
     });

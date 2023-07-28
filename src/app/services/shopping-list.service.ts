@@ -20,17 +20,20 @@ export class ShoppingListService {
       map((data: any[]) => {
         const ingredientesParsed: Ingrediente[] = [];
         data[0].forEach((ingrediente: any) => {
-          ingredientesParsed.push({
-            Total: ingrediente["8"],
-            Costo: ingrediente.Costo,
-            Falta: ingrediente.Falta,
-            Nombre: ingrediente.Ingredientes,
-            Medida: ingrediente.Medida,
-            Necesitamos: ingrediente["Necesitamos por quincena"],
-            Index: ingrediente.Celda,
-            Hoja: "Ingredientes Totales Quincenales"
-          });
+        if (ingrediente.Falta !== "0") {
+            ingredientesParsed.push({
+              Total: ingrediente["8"],
+              Costo: ingrediente.Costo,
+              Falta: ingrediente.Falta,
+              Nombre: ingrediente.Ingredientes,
+              Medida: ingrediente.Medida,
+              Necesitamos: ingrediente["Necesitamos por quincena"],
+              Index: ingrediente.Celda,
+              Hoja: "Ingredientes Totales Quincenales"
+            });
+          }
         });
+
         data[1].forEach((ingrediente: any) => {
           if (ingrediente["Cuantos?"] !== "0" && ingrediente["Cuantos?"] !== "Cuanto?") {
             ingredientesParsed.push({
